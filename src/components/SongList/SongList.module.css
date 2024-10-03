@@ -1,5 +1,5 @@
 .container {
-	max-width: 650px;
+	max-width: 700px;
 	margin: 0 auto;
 	padding: 20px;
 	background-color: #181818;
@@ -51,7 +51,19 @@
 }
 
 .views,
-.time {
+.time,
+.favourite {
 	color: #b3b3b3;
 	font-size: 14px;
+	margin: 0 20px;
+}
+
+span:last-child {
+	padding: 10px 20px;
+}
+
+span:last-child:hover {
+	color: white;
+	transform: scale(1.1);
+	transition: transform 0.2s, color 0.2s;
 }
