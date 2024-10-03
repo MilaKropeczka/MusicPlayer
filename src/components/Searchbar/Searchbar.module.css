@@ -1,0 +1,38 @@
+.container {
+	max-width: 700px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #181818;
+	border-radius: 8px;
+}
+
+.h2 {
+	color: white;
+	padding: 0 20px;
+	margin-bottom: 20px;
+}
+
+.button {
+	background-color: #f13b3b;
+	border: none;
+	color: #ffffff;
+	margin: 0 10px;
+	padding: 7px 20px;
+	border-radius: 8px;
+}
+.button:hover {
+	transition: background-color 0.3s;
+	background-color: #fd5f5f;
+	color: #ffffff;
+}
+
+.input {
+	width: 300px;
+	min-width: 200px;
+	background-color: #000000;
+	border: none;
+	color: #ffffff;
+	margin: 0 10px;
+	padding: 7px 20px;
+	border-radius: 8px;
+}

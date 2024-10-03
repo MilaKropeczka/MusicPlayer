@@ -1,20 +1,40 @@
 .container {
 	max-width: 700px;
-	margin: 0 auto;
+	margin: 20px auto;
 	padding: 20px;
 	background-color: #181818;
 	border-radius: 8px;
+}
+
+.headingContainer {
+	display: flex;
+	justify-content: space-between;
+}
+
+.heading {
+	font-size: 24px;
+	color: #ffffff;
+	cursor: pointer;
+}
+.heading:hover {
+	transition: 0.2s;
+	color: #c4c4c4;
+}
+
+.headingTwo {
+	cursor: pointer;
+	font-size: 24px;
+	color: #686868;
+}
+.headingTwo:hover {
+	transition: 0.2s;
+	color: #505050;
 }
 
 .number {
 	color: #b1b1b1;
 	margin-right: 20px;
 	margin-left: 20px;
-}
-
-.heading {
-	font-size: 24px;
-	color: #ffffff;
 }
 
 .songItems {

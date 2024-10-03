@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import ResultsContext from '../../context/ResultsContext';
+import styles from './Searchbar.module.css';
 import axios from 'axios';
 
 const SpotifySearch = () => {
@@ -32,17 +33,22 @@ const SpotifySearch = () => {
 	};
 
 	return (
-		<div>
-			<h1>Znajdź swój ulubiony utwór!</h1>
-			<form onSubmit={handleSearch}>
-				<input
-					type='text'
-					value={value}
-					onChange={(e) => setValue(e.target.value)}
-					placeholder='Nazwa utworu...'
-				/>
-				<button type='submit'>Wyszukaj</button>
-			</form>
+		<div className={styles.container}>
+			<div className='box'>
+				<h2 className={styles.h2}>Znajdź swój ulubiony utwór!</h2>
+				<form className={styles.form} onSubmit={handleSearch}>
+					<input
+						className={styles.input}
+						type='text'
+						value={value}
+						onChange={(e) => setValue(e.target.value)}
+						placeholder='Nazwa utworu...'
+					/>
+					<button className={styles.button} type='submit'>
+						Wyszukaj
+					</button>
+				</form>
+			</div>
 		</div>
 	);
 };

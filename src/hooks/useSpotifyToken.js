@@ -41,7 +41,6 @@ const useSpotifyToken = () => {
 				setError(err.message);
 			}
 		};
-
 		fetchToken();
 	}, []);
 
