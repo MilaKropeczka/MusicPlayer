@@ -3,9 +3,10 @@ import ResultsContext from '../../context/ResultsContext';
 import styles from './Searchbar.module.css';
 import axios from 'axios';
 
-const SpotifySearch = () => {
+const SpotifySearch = (props) => {
 	const [value, setValue] = useState('');
 	const { setResults } = useContext(ResultsContext);
+	const setFavouriteListActive = props.setFavouriteListActive;
 
 	const handleSearch = async (e) => {
 		e.preventDefault();
@@ -44,7 +45,10 @@ const SpotifySearch = () => {
 						onChange={(e) => setValue(e.target.value)}
 						placeholder='Nazwa utworu...'
 					/>
-					<button className={styles.button} type='submit'>
+					<button
+						className={styles.button}
+						type='submit'
+						onClick={() => setFavouriteListActive(false)}>
 						Wyszukaj
 					</button>
 				</form>

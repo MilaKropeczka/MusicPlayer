@@ -2,15 +2,17 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from './SongList.module.css';
 import ResultsContext from '../../context/ResultsContext';
 
-export default function SongList() {
+export default function SongList(props) {
 	const { results } = useContext(ResultsContext);
 	const [songs, setSongs] = useState([]);
 	const [favouriteList, setFavouriteList] = useState([]);
-	const [isFavouriteListActive, setFavouriteListActive] = useState(true);
+	// const [isFavouriteListActive, setFavouriteListActive] = useState(true);
+	const isFavouriteListActive = props.isFavouriteListActive;
+	const setFavouriteListActive = props.setFavouriteListActive;
 
 	useEffect(() => {
 		if (results) {
-			const newSongs = results.map((el, index) => {
+			const newSongs = results.map((el) => {
 				return {
 					id: Math.random(),
 					img: el.album.images[0].url,
@@ -61,32 +63,50 @@ export default function SongList() {
 					Wyszukiwane utwory
 				</h2>
 			</div>
+
 			{isFavouriteListActive ? (
-				<ul className={styles.songItems}>
-					{favouriteList.map((song, index) => (
-						<li key={song.id} className={styles.item}>
-							<span className={styles.number}>{index + 1}</span>
-							<img
-								src={song.img}
-								alt={song.title}
-								className={styles.img}
-							/>
-							<span className={styles.title}>{song.title}</span>
-							<span className={styles.time}>{song.time}</span>
-							<span className={styles.favourite}>
-								<i
-									className={
-										song.favourite
-											? 'fa-solid fa-heart'
-											: 'fa-regular fa-heart'
-									}
-									onClick={() => {
-										toggleFavourite(song);
-									}}></i>
-							</span>
-						</li>
-					))}
-				</ul>
+				favouriteList.length !== 0 ? (
+					<>
+						<ul className={styles.songItems}>
+							{favouriteList.map((song, index) => (
+								<li key={song.id} className={styles.item}>
+									<span className={styles.number}>
+										{index + 1}
+									</span>
+									<img
+										src={song.img}
+										alt={song.title}
+										className={styles.img}
+									/>
+									<span className={styles.title}>
+										{song.title}
+									</span>
+									<span className={styles.time}>
+										{song.time}
+									</span>
+									<span className={styles.edit}>
+										<i className='fa-solid fa-pen-to-square'></i>
+									</span>
+									<span className={styles.favourite}>
+										<i
+											className={
+												song.favourite
+													? 'fa-solid fa-heart'
+													: 'fa-regular fa-heart'
+											}
+											onClick={() => {
+												toggleFavourite(song);
+											}}></i>
+									</span>
+								</li>
+							))}
+						</ul>
+					</>
+				) : (
+					<p className={styles.p}>
+						Nie dodałaś jeszcze żadnych piosenek do ulubionych
+					</p>
+				)
 			) : (
 				<ul className={styles.songItems}>
 					{songs.map((song, index) => (
@@ -114,6 +134,12 @@ export default function SongList() {
 					))}
 				</ul>
 			)}
+			<div className={styles.audioContainer}>
+				<audio className={styles.audioPlayer} controls>
+					<source src='#' type='audio/mpeg' />
+					Twoja przeglądarka nie obsługuje elementu audio.
+				</audio>
+			</div>
 		</div>
 	);
 }
