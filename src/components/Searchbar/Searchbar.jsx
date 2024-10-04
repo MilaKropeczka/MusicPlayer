@@ -1,38 +1,25 @@
-import React, { useContext, useState } from 'react';
-import ResultsContext from '../../context/ResultsContext';
+import React, { useState, useContext } from 'react';
 import styles from './Searchbar.module.css';
-import axios from 'axios';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
+import useSpotifySearch from '../../hooks/useSpotifySearch';
+import SwitchTabContext from '../../context/SwitchTabContext';
 
-const SpotifySearch = (props) => {
+const SpotifySearch = () => {
 	const [value, setValue] = useState('');
-	const { setResults } = useContext(ResultsContext);
-	const setFavouriteListActive = props.setFavouriteListActive;
+	const [searchTerm, setSearchTerm] = useState('');
+	const { setFavouriteListActive } = useContext(SwitchTabContext);
 
-	const handleSearch = async (e) => {
+	const handleSearch = (e) => {
 		e.preventDefault();
+		setValue(e.target.value || '');
+	};
+	useSpotifySearch(value);
 
-		const token = sessionStorage.getItem('spotifyAccessToken');
-
-		try {
-			const response = await axios.get(
-				`https://api.spotify.com/v1/search`,
-				{
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-					params: {
-						q: value,
-						type: 'track',
-					},
-				}
-			);
-
-			setResults(response.data.tracks.items);
-		} catch (error) {
-			console.error('Error fetching data from Spotify API:', error);
-		}
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setSearchTerm(value);
+		setFavouriteListActive(false);
 	};
 
 	return (
@@ -43,11 +30,9 @@ const SpotifySearch = (props) => {
 					<Input
 						value={value}
 						placeholder='Nazwa utworu...'
-						onChange={(e) => setValue(e.target.value)}
+						onChange={(e) => setValue(e.target.value || '')}
 					/>
-					<Button onClick={() => setFavouriteListActive(false)}>
-						Wyszukaj
-					</Button>
+					<Button onClick={handleSubmit}>Wyszukaj</Button>
 				</form>
 			</div>
 		</div>

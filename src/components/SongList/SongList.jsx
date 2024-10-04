@@ -1,58 +1,35 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './SongList.module.css';
-import ResultsContext from '../../context/ResultsContext';
-import { formatTime } from '../../helpers/formatTime';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+	addFavourite,
+	removeFavourite,
+	editFavouriteTitle,
+} from '../../redux/songsSlice';
+import SwitchTabContext from '../../context/SwitchTabContext';
 
-export default function SongList(props) {
-	const { results } = useContext(ResultsContext);
-	const [songs, setSongs] = useState([]);
-	const [favouriteList, setFavouriteList] = useState([]);
+export default function SongList() {
+	const { isFavouriteListActive, setFavouriteListActive } =
+		useContext(SwitchTabContext);
+	const songs = useSelector((state) => state.songs.songs);
+	const favouriteList = useSelector((state) => state.songs.favouriteList);
+	const dispatch = useDispatch();
+
 	const [editMode, setEditMode] = useState(null);
 	const [editTitle, setEditTitle] = useState('');
 
-	const isFavouriteListActive = props.isFavouriteListActive;
-	const setFavouriteListActive = props.setFavouriteListActive;
-
-	useEffect(() => {
-		if (results) {
-			const newSongs = results.map((el) => {
-				return {
-					id: el.id,
-					img: el.album.images[0].url,
-					title: `${el.name} - ${el.artists[0].name}`,
-					time: formatTime(el.duration_ms),
-					favourite: favouriteList.some((song) => song.id === el.id),
-				};
-			});
-			setSongs(newSongs);
-		}
-	}, [results]);
-
 	const toggleFavourite = (song) => {
-		const newSong = { ...song, favourite: true };
-		const updatedSongs = songs.map((el) =>
-			el.id === song.id ? { ...el, favourite: !el.favourite } : el
-		);
 		if (!song.favourite) {
-			setFavouriteList((prev) => {
-				const exists = prev.some(
-					(x) => x.id === song.id || x.title === song.title
-				);
-				return exists ? prev : [...prev, { ...newSong }];
-			});
+			dispatch(addFavourite(song));
 		} else {
-			setFavouriteList((prev) => prev.filter((x) => x.id !== song.id));
+			dispatch(removeFavourite(song));
 		}
-		setSongs(updatedSongs);
 	};
 
 	const editFavouriteSongTitle = (id) => {
-		const updatedFavouriteList = favouriteList.map((song) =>
-			song.id === id ? { ...song, title: editTitle } : song
-		);
-		setFavouriteList(updatedFavouriteList);
+		dispatch(editFavouriteTitle({ id, title: editTitle }));
 		setEditMode(null);
 	};
 
@@ -78,7 +55,6 @@ export default function SongList(props) {
 					Wyszukiwane utwory
 				</h2>
 			</div>
-
 			{isFavouriteListActive ? (
 				favouriteList.length !== 0 ? (
 					<ul className={styles.songItems}>
