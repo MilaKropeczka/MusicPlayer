@@ -1,8 +1,9 @@
 import './App.css';
 import Searchbar from './components/Searchbar/Searchbar';
-import SongList from './components/SongList/SongList';
 import { SwitchTabProvider } from './context/SwitchTabContext';
 import useSpotifyToken from './hooks/useSpotifyToken';
+import MainList from './components/MainList/MainList';
+import AudioComponent from './components/AudioComponent/AudioComponent';
 
 function App() {
 	const { accessToken, error } = useSpotifyToken();
@@ -15,7 +16,8 @@ function App() {
 				className='App'
 				style={{ minHeight: '100vh', backgroundColor: 'black' }}>
 				<Searchbar />
-				<SongList />
+				<MainList />
+				<AudioComponent />
 			</div>
 		</SwitchTabProvider>
 	);

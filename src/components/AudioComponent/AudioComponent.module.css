@@ -1,0 +1,27 @@
+.audioContainer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #202020;
+	padding: 10px 0;
+	z-index: 1000;
+}
+
+.audioPlayer {
+	width: 100%;
+	color: #ffffff;
+}
+
+audio::-webkit-media-controls-panel {
+	background-color: #202020;
+	color: #ffffff;
+}
+
+audio::-webkit-media-controls-timeline-container {
+	filter: invert(100%);
+}
+
+audio {
+	color-scheme: dark;
+}
