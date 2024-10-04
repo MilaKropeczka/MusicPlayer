@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import ResultsContext from '../../context/ResultsContext';
 import styles from './Searchbar.module.css';
 import axios from 'axios';
+import Button from '../UI/Button/Button';
+import Input from '../UI/Input/Input';
 
 const SpotifySearch = (props) => {
 	const [value, setValue] = useState('');
@@ -38,19 +40,14 @@ const SpotifySearch = (props) => {
 			<div className='box'>
 				<h2 className={styles.h2}>Znajdź swój ulubiony utwór!</h2>
 				<form className={styles.form} onSubmit={handleSearch}>
-					<input
-						className={styles.input}
-						type='text'
+					<Input
 						value={value}
-						onChange={(e) => setValue(e.target.value)}
 						placeholder='Nazwa utworu...'
+						onChange={(e) => setValue(e.target.value)}
 					/>
-					<button
-						className={styles.button}
-						type='submit'
-						onClick={() => setFavouriteListActive(false)}>
+					<Button onClick={() => setFavouriteListActive(false)}>
 						Wyszukaj
-					</button>
+					</Button>
 				</form>
 			</div>
 		</div>
