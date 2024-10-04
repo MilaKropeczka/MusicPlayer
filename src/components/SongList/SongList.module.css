@@ -123,3 +123,14 @@ audio::-webkit-media-controls-timeline-container {
 audio {
 	color-scheme: dark;
 }
+
+.editInput {
+	width: 300px;
+	min-width: 200px;
+	background-color: #000000;
+	border: none;
+	color: #ffffff;
+	margin: 0 10px;
+	padding: 7px 20px;
+	border-radius: 8px;
+}
