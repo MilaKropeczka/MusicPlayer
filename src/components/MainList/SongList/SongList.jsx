@@ -1,15 +1,11 @@
 import React from 'react';
 import styles from './SongList.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { addFavourite } from '../../../redux/songsSlice';
+import { toggleFavourite } from '../../../redux/songsSlice';
 
 export default function SongList() {
 	const songs = useSelector((state) => state.songs.songs);
 	const dispatch = useDispatch();
-
-	const toggleFavourite = (song) => {
-		dispatch(addFavourite(song));
-	};
 
 	return (
 		<div className={styles.container}>
@@ -33,7 +29,7 @@ export default function SongList() {
 											: 'fa-regular fa-heart'
 									}
 									onClick={() => {
-										toggleFavourite(song);
+										dispatch(toggleFavourite(song));
 									}}></i>
 							</span>
 						</li>

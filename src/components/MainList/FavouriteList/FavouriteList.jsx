@@ -3,7 +3,7 @@ import styles from './FavouriteList.module.css';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFavourite, editFavouriteTitle } from '../../../redux/songsSlice';
+import { toggleFavourite, editFavouriteTitle } from '../../../redux/songsSlice';
 
 export default function FavouriteList() {
 	const favouriteList = useSelector((state) => state.songs.favouriteList);
@@ -11,10 +11,6 @@ export default function FavouriteList() {
 
 	const [editMode, setEditMode] = useState(null);
 	const [editTitle, setEditTitle] = useState('');
-
-	const toggleFavourite = (song) => {
-		dispatch(removeFavourite(song));
-	};
 
 	const editFavouriteSongTitle = (id) => {
 		dispatch(editFavouriteTitle({ id, title: editTitle }));
@@ -70,7 +66,7 @@ export default function FavouriteList() {
 								<i
 									className='fa-solid fa-heart'
 									onClick={() => {
-										toggleFavourite(song);
+										dispatch(toggleFavourite(song));
 									}}></i>
 							</span>
 						</li>
@@ -78,7 +74,7 @@ export default function FavouriteList() {
 				</ul>
 			) : (
 				<p className={styles.p}>
-					Nie dodałaś jeszcze żadnych piosenek do ulubionych
+					Nie dodałeś jeszcze żadnych piosenek do ulubionych
 				</p>
 			)}
 		</div>

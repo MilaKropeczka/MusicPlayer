@@ -8,22 +8,33 @@ const songsSlice = createSlice({
 		favouriteList: [],
 	},
 	reducers: {
-		addFavourite: (state, action) => {
-			const exists = state.favouriteList.some(
+		toggleFavourite: (state, action) => {
+			const songExistsInFavourites = state.favouriteList.some(
 				(song) => song.id === action.payload.id
 			);
-			if (!exists) {
+
+			if (songExistsInFavourites) {
+				state.favouriteList = state.favouriteList.filter(
+					(song) => song.id !== action.payload.id
+				);
+
+				state.songs.forEach((song) => {
+					if (song.id === action.payload.id) {
+						song.favourite = false;
+					}
+				});
+			} else {
 				state.favouriteList.push({
 					...action.payload,
 					favourite: true,
 				});
+
+				state.songs.forEach((song) => {
+					if (song.id === action.payload.id) {
+						song.favourite = true;
+					}
+				});
 			}
-			// console.log(JSON.parse(JSON.stringify(state)));
-		},
-		removeFavourite: (state, action) => {
-			state.favouriteList = state.favouriteList.filter(
-				(song) => song.id !== action.payload.id
-			);
 		},
 		editFavouriteTitle: (state, action) => {
 			const { id, title } = action.payload;
@@ -51,6 +62,6 @@ const songsSlice = createSlice({
 	},
 });
 
-export const { addFavourite, removeFavourite, editFavouriteTitle, setSongs } =
+export const { toggleFavourite, editFavouriteTitle, setSongs } =
 	songsSlice.actions;
 export default songsSlice.reducer;
