@@ -18,7 +18,8 @@ export default function MainList() {
 							: styles.heading
 					}`}
 					onClick={() => setFavouriteListActive(true)}>
-					Lista ulubionych utworów
+					Lista ulubionych{' '}
+					<span className={styles.desktop}>utworów</span>
 				</h2>
 				<h2
 					className={`${
@@ -27,7 +28,7 @@ export default function MainList() {
 							: styles.heading
 					}`}
 					onClick={() => setFavouriteListActive(false)}>
-					Wyszukiwane utwory
+					Wyszukiwane <span className={styles.desktop}>utwory</span>
 				</h2>
 			</div>
 			{isFavouriteListActive ? <FavouriteList /> : <SongList />}

@@ -45,30 +45,40 @@ export default function FavouriteList() {
 									{song.title}
 								</span>
 							)}
-							<span className={styles.time}>{song.time}</span>
-							<span className={styles.edit}>
-								<i
-									className='fa-solid fa-pen-to-square'
-									onClick={() => {
-										setEditMode(song.id);
-										setEditTitle(song.title);
-									}}></i>
-							</span>
-							{editMode === song.id && (
-								<Button
-									onClick={() =>
-										editFavouriteSongTitle(song.id)
-									}>
-									Zapisz
-								</Button>
+
+							{editMode ? (
+								<>
+									{editMode === song.id && (
+										<Button
+											onClick={() =>
+												editFavouriteSongTitle(song.id)
+											}>
+											Zapisz
+										</Button>
+									)}
+								</>
+							) : (
+								<>
+									<span className={styles.time}>
+										{song.time}
+									</span>
+									<span className={styles.edit}>
+										<i
+											className='fa-solid fa-pen-to-square'
+											onClick={() => {
+												setEditMode(song.id);
+												setEditTitle(song.title);
+											}}></i>
+									</span>
+									<span className={styles.favourite}>
+										<i
+											className='fa-solid fa-heart'
+											onClick={() => {
+												dispatch(toggleFavourite(song));
+											}}></i>
+									</span>
+								</>
 							)}
-							<span className={styles.favourite}>
-								<i
-									className='fa-solid fa-heart'
-									onClick={() => {
-										dispatch(toggleFavourite(song));
-									}}></i>
-							</span>
 						</li>
 					))}
 				</ul>
