@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.7bb64455.css",
-    "main.js": "/static/js/main.5533e593.js",
-    "static/js/453.6babfd3c.chunk.js": "/static/js/453.6babfd3c.chunk.js",
-    "index.html": "/index.html",
-    "main.7bb64455.css.map": "/static/css/main.7bb64455.css.map",
-    "main.5533e593.js.map": "/static/js/main.5533e593.js.map",
-    "453.6babfd3c.chunk.js.map": "/static/js/453.6babfd3c.chunk.js.map"
+    "main.css": "https://milakropeczka.github.io/MusicPlayer/static/css/main.7bb64455.css",
+    "main.js": "https://milakropeczka.github.io/MusicPlayer/static/js/main.695e1007.js",
+    "static/js/453.6babfd3c.chunk.js": "https://milakropeczka.github.io/MusicPlayer/static/js/453.6babfd3c.chunk.js",
+    "index.html": "https://milakropeczka.github.io/MusicPlayer/index.html",
+    "main.7bb64455.css.map": "https://milakropeczka.github.io/MusicPlayer/static/css/main.7bb64455.css.map",
+    "main.695e1007.js.map": "https://milakropeczka.github.io/MusicPlayer/static/js/main.695e1007.js.map",
+    "453.6babfd3c.chunk.js.map": "https://milakropeczka.github.io/MusicPlayer/static/js/453.6babfd3c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7bb64455.css",
-    "static/js/main.5533e593.js"
+    "static/js/main.695e1007.js"
   ]
 }
