@@ -2,7 +2,17 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleFavourite } from '../../../redux/songsSlice';
 
-const FavouriteIcon = ({ song }) => {
+interface FavouriteIconProps {
+	song: {
+		id: string;
+		img: string;
+		title: string;
+		time: string;
+		favourite: boolean;
+	};
+}
+
+const FavouriteIcon: React.FC<FavouriteIconProps> = ({ song }) => {
 	const dispatch = useDispatch();
 
 	return (

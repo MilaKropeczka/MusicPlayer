@@ -2,11 +2,17 @@ import React from 'react';
 import Button from '../../../UI/Button/Button';
 import Input from '../../../UI/Input/Input';
 
-export default function EditItem({
+interface EditItemProps {
+	editTitle: string;
+	setEditTitle: (value: string) => void;
+	editFavouriteSongTitle: () => void;
+}
+
+const EditItem: React.FC<EditItemProps> = ({
 	editTitle,
 	setEditTitle,
 	editFavouriteSongTitle,
-}) {
+}) => {
 	return (
 		<>
 			<Input
@@ -16,4 +22,6 @@ export default function EditItem({
 			<Button onClick={editFavouriteSongTitle}>Zapisz</Button>
 		</>
 	);
-}
+};
+
+export default EditItem;

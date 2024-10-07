@@ -1,14 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { formatTime } from '../helpers/formatTime';
+
+interface Song {
+	id: string;
+	img: string;
+	title: string;
+	time: string;
+	favourite: boolean;
+}
+
+interface SongsState {
+	songs: Song[];
+	favouriteList: Song[];
+}
+
+const initialState: SongsState = {
+	songs: [],
+	favouriteList: [],
+};
 
 const songsSlice = createSlice({
 	name: 'songs',
-	initialState: {
-		songs: [],
-		favouriteList: [],
-	},
+	initialState,
 	reducers: {
-		toggleFavourite: (state, action) => {
+		toggleFavourite: (state, action: PayloadAction<Song>) => {
 			const songExistsInFavourites = state.favouriteList.some(
 				(song) => song.id === action.payload.id
 			);
@@ -36,7 +51,10 @@ const songsSlice = createSlice({
 				});
 			}
 		},
-		editFavouriteTitle: (state, action) => {
+		editFavouriteTitle: (
+			state,
+			action: PayloadAction<{ id: string; title: string }>
+		) => {
 			const { id, title } = action.payload;
 			const songToEdit = state.favouriteList.find(
 				(song) => song.id === id
@@ -45,7 +63,7 @@ const songsSlice = createSlice({
 				songToEdit.title = title;
 			}
 		},
-		setSongs: (state, action) => {
+		setSongs: (state, action: PayloadAction<any[]>) => {
 			const newSongs = action.payload.map((el) => {
 				return {
 					id: el.id,

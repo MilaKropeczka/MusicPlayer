@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './AudioComponent.module.css';
 
-export default function AudioComponent() {
+const AudioComponent: React.FC = () => {
 	return (
 		<div className={styles.audioContainer}>
 			<audio className={styles.audioPlayer} controls>
@@ -10,4 +10,6 @@ export default function AudioComponent() {
 			</audio>
 		</div>
 	);
-}
+};
+
+export default AudioComponent;

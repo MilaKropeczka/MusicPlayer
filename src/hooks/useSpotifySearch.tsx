@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setSongs } from '../redux/songsSlice';
 
-const useSpotifySearch = (value) => {
+const useSpotifySearch = (value: string) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {

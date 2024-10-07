@@ -4,7 +4,7 @@ import FavouriteList from './FavouriteList/FavouriteList';
 import styles from './MainList.module.css';
 import SwitchTabContext from '../../context/SwitchTabContext';
 
-export default function MainList() {
+const MainList: React.FC = () => {
 	const { isFavouriteListActive, setFavouriteListActive } =
 		useContext(SwitchTabContext);
 
@@ -34,4 +34,6 @@ export default function MainList() {
 			{isFavouriteListActive ? <FavouriteList /> : <SongList />}
 		</div>
 	);
-}
+};
+
+export default MainList;
