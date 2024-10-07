@@ -2,15 +2,26 @@ import React from 'react';
 import styles from './FavouriteList.module.css';
 import FavouriteItem from './FavouriteItem/FavouriteItem';
 import { useSelector } from 'react-redux';
+import { State } from '../../../redux/store';
 
-export default function FavouriteList() {
-	const favouriteList = useSelector((state) => state.songs.favouriteList);
+interface Song {
+	id: string;
+	img: string;
+	title: string;
+	time: string;
+	favourite: boolean;
+}
+
+const FavouriteList: React.FC = () => {
+	const favouriteList = useSelector(
+		(state: State) => state.songs.favouriteList
+	);
 
 	return (
 		<div className={styles.container}>
 			{favouriteList.length !== 0 ? (
 				<ul className={styles.songItems}>
-					{favouriteList.map((song, index) => (
+					{favouriteList.map((song: Song, index: number) => (
 						<FavouriteItem
 							key={song.id}
 							song={song}
@@ -25,4 +36,6 @@ export default function FavouriteList() {
 			)}
 		</div>
 	);
-}
+};
+
+export default FavouriteList;

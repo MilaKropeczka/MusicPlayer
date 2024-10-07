@@ -5,12 +5,28 @@ import { useDispatch } from 'react-redux';
 import { editFavouriteTitle } from '../../../../redux/songsSlice';
 import FavouriteIcon from '../../FavouriteIcon/FavouriteIcon';
 
-export default function FavouriteSongItem({ song, index }) {
-	const dispatch = useDispatch();
-	const [editMode, setEditMode] = useState(null);
-	const [editTitle, setEditTitle] = useState('');
+interface Song {
+	id: string;
+	img: string;
+	title: string;
+	time: string;
+	favourite: boolean;
+}
 
-	const editFavouriteSongTitle = (id) => {
+interface FavouriteSongItemProps {
+	song: Song;
+	index: number;
+}
+
+const FavouriteSongItem: React.FC<FavouriteSongItemProps> = ({
+	song,
+	index,
+}) => {
+	const dispatch = useDispatch();
+	const [editMode, setEditMode] = useState<string | null>(null);
+	const [editTitle, setEditTitle] = useState<string>('');
+
+	const editFavouriteSongTitle = (id: string) => {
 		dispatch(editFavouriteTitle({ id, title: editTitle }));
 		setEditMode(null);
 	};
@@ -51,4 +67,6 @@ export default function FavouriteSongItem({ song, index }) {
 			)}
 		</li>
 	);
-}
+};
+
+export default FavouriteSongItem;

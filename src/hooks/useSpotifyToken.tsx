@@ -4,7 +4,7 @@ import axios from 'axios';
 const clientId = process.env.REACT_APP_CLIENT_ID;
 const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 
-const getAccessToken = async () => {
+const getAccessToken = async (): Promise<string> => {
 	try {
 		const res = await axios.post(
 			'https://accounts.spotify.com/api/token',
@@ -25,8 +25,8 @@ const getAccessToken = async () => {
 };
 
 const useSpotifyToken = () => {
-	const [accessToken, setAccessToken] = useState(null);
-	const [error, setError] = useState(null);
+	const [accessToken, setAccessToken] = useState<string | null>(null);
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		const fetchToken = async () => {
@@ -38,7 +38,7 @@ const useSpotifyToken = () => {
 				}
 				setAccessToken(token);
 			} catch (err) {
-				setError(err.message);
+				setError((err as Error).message);
 			}
 		};
 		fetchToken();

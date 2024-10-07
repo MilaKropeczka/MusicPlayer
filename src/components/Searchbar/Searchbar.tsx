@@ -1,18 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, FormEvent } from 'react';
 import styles from './Searchbar.module.css';
 import useSpotifySearch from '../../hooks/useSpotifySearch';
 import SwitchTabContext from '../../context/SwitchTabContext';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 
-const SpotifySearch = () => {
-	const [value, setValue] = useState('');
-	const [searchTerm, setSearchTerm] = useState('');
+const SpotifySearch: React.FC = () => {
+	const [value, setValue] = useState<string>('');
+	const [searchTerm, setSearchTerm] = useState<string>('');
+
 	const { setFavouriteListActive } = useContext(SwitchTabContext);
 
 	useSpotifySearch(searchTerm);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setSearchTerm(value);
 		setFavouriteListActive(false);

@@ -5,7 +5,7 @@ import useSpotifyToken from './hooks/useSpotifyToken';
 import MainList from './components/MainList/MainList';
 import AudioComponent from './components/AudioComponent/AudioComponent';
 
-function App() {
+const App = () => {
 	const { accessToken, error } = useSpotifyToken();
 
 	if (error) return <div>Error: {error}</div>;
@@ -21,6 +21,6 @@ function App() {
 			</div>
 		</SwitchTabProvider>
 	);
-}
+};
 
 export default App;
