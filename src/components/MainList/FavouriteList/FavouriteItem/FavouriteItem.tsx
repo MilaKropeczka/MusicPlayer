@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../FavouriteList.module.css';
+import styles from './FavouriteItem.module.css';
 import EditTitle from '../EditTitle/EditTitle';
 import { useDispatch } from 'react-redux';
 import { editFavouriteTitle } from '../../../../redux/songsSlice';
